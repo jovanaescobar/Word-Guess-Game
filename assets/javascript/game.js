@@ -6,7 +6,7 @@
  const words = ['barnicle', 'sponge', 'patrick']
  
  // Variables for random word generator, and score/letter trackers
- var randomNum = Math.floor(Math.random() * words.length);
+ var randomNum = [Math.floor(Math.random() * words.length)];
  var chosenWord = words[randomNum];
  var rightWord =[];
  var wrongWord = [];
@@ -49,13 +49,14 @@ var docWrongGuess = document.getElementsByClassName('wrongGuess');
        alert('You Win'); 
      }
     }
-    else {
-        wrongWord.push(keyWord);
+
+     
     
-    }
  });
 
-docWrongGuess[0].innerHTML = generateunderScore().join('');
-if(underScore.join('') == wrongWord) {
-    alert('You Lose'); 
-}
+
+
+
+
+
+
