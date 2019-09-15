@@ -1,62 +1,111 @@
- alert("Press OK to get started!")
- 
- 
- // Creat array for random words I want to appear in the game
- 
- const words = ['barnicle', 'sponge', 'patrick']
- 
- // Variables for random word generator, and score/letter trackers
- var randomNum = [Math.floor(Math.random() * words.length)];
- var chosenWord = words[randomNum];
- var rightWord =[];
- var wrongWord = [];
- var underScore = [];
+  // Words
+	var gameWords = ["patrick", "spongebob", "plankton", "pineapple", "sandy", "barnicles" ];
+	// Random word option to be guessed by the player.
+	var theWord = "";
+	// Placeholder for each letter per word
+	var letterSpaces = [];
+	// "_" per letter in each word 
+	var notGuessed = 0;
+	//Correct letters selections
+	var rightLetters = [];
+	//Wrong letter selections
+	var wrongLetters = [];
+	//Scores
+	var wins = 0;
+	var losses = 0;
+	var turnsLeft = 15;
+
+	//Function to start a new game
+	function newGame () {
+	//Generate a random word
+	theWord = gameWords[Math.floor(Math.random() * gameWords.length)];
+	//Split word into individual letters to be guessed
+	letterSpaces = theWord.split("");
+	//Number of spaces per word
+	notGuessed = letterSpaces.length;
+	//Reset per every 15 guesses 
+	turnsLeft = 15;
+	wrongLetters = [];
+	rightLetters = [];
+
+	//Generate spaces per word
+	for (i = 0; i < notGuessed; i++) {
+	rightLetters.push("_");}
+
+	//HTML information
+	document.getElementById("theWord").innerHTML = rightLetters.join(" ");
+	document.getElementById("remGuesses").innerHTML = "Remaining Guesses Left: " + " " + turnsLeft;
+	document.getElementById("wins").innerHTML = "WINS: " + " " + wins;
+	document.getElementById("losses").innerHTML = "LOSSES: " + " " + losses;
+}
+
+	function checkLtrs(letter) {
+	//Check if key pressed is A-Z
+		if (event.keyCode >= 65 && event.keyCode <= 90) { 
+		//Check if the letter pressed is in the word
+		var correctLetter = false;
+			for ( var i = 0; i < notGuessed; i++) {
+				if(theWord[i] == letter) {
+					correctLetter = true;
+				}
+			}
+	//If selected letter is part of the word
+		if(correctLetter) {
+		for ( var i = 0; i < notGuessed; i++) {
+			if(theWord[i] == letter) {
+				rightLetters[i] = letter;}
+						}
+					}
+	//If selected letter isn't part of the word
+		else {
+			wrongLetters.push(letter);
+	// Number of turns decreases per selection
+			turnsLeft--
+			}
+	      }
+       }
+	function roundComplete() {
+
+	//Update turns left, right letters, wrong letters HTML
+		document.getElementById("remGuesses").innerHTML = "Remaining Guesses Left: " + " " + turnsLeft;
+		document.getElementById("theWord").innerHTML = rightLetters.join(" ");
+		document.getElementById("wrongChoices").innerHTML = "Incorrect Letters:" + " " + wrongLetters.join(" ");
 
 
-var docUnderScore = document.getElementsByClassName('underScore');
-var docRightGuess = document.getElementsByClassName('rightGuess');
-var docWrongGuess = document.getElementsByClassName('wrongGuess');
+	//If word is revealed
+		if (letterSpaces.toString() == rightLetters.toString()) {
+			wins++;
+			alert("You did it!");
 
- console.log(chosenWord);
- 
- // Create underscores depending on the length of the word
- 
- var generateunderScore = () => {
-   for(var i = 0; i < chosenWord.length; i++) {
-   underScore.push('_');
-   }
-   return underScore;
- }
- 
- //Generate letter when key is pressed
-    document.addEventListener('keypress', (event) => {
-    var keyWord = String.fromCharCode(event.keyCode);
+	//Update wins score
+		document.getElementById("wins").innerHTML = "WINS: " + " ";
+	//Start a new round | clear previous guesses
+		newGame();
+		document.getElementById("wrongChoices").innerHTML = "Incorrect Letters:" + " ";
 
+	//If turns are finished before revealing the word
+		} else if (turnsLeft == 0) { 
+			losses++;	alert("Tartar Sauce!")
+	// Update losses score 
+		document.getElementById("losses").innerHTML = "LOSSES: " + " ";
 
-// if guess is correct
-   if(chosenWord.indexOf(keyWord) > -1) { 
+	//Start New Game
+		newGame();
+		document.getElementById("wrongChoices").innerHTML = "Incorrect Letters:" + " ";
+}
+	}
 
-//add to correct bank
-       rightWord.push(keyWord);
- 
- // replace underscore with correct letter
-       underScore[chosenWord.indexOf(keyWord)] = keyWord;
-       docUnderScore[0].innerHTML = underScore.join('');
-       
-       
-   //Checks if user word matches
-     if(underScore.join('') == chosenWord) {
-       alert('You Win'); 
-     }
-    }
+	//Start the game 
+	newGame();
 
-     
-    
- });
+	document.onkeyup = function(event) {
+		//Hold letters that have been guessed
+		var ltrsGuessed = String.fromCharCode(event.keyCode).toLowerCase();
 
+		//Run the check letters function
+		checkLtrs(ltrsGuessed);
+		roundComplete();
 
-
-
-
+		}
 
 

@@ -5,35 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    
-    <link rel="stylesheet" type="text/css" href="/Users/mac/Web-Development-Files/Word-Guess-Game/assets/css/style.css">
-
-    <link rel="stylesheet" type="text/css" href="/Users/mac/Web-Development-Files/Word-Guess-Game/assets/css/reset.css">
-   
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Alegreya+SC|Barriecito|Freckle+Face|Give+You+Glory|Gloria+Hallelujah&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <title>Sponge Bob Square Pants</title>
-</head>
-<body>
-    <h1>Sponge Bob Word Guess Game!</h1>
+    </head>
 
-<div class="container">
+    <body>
+    <div class="container"> 
+    <div id="header">Sponge Bob Square Pants Word Game! <img src="https://www.cartoon-clipart.co/amp/images/garry.png" height="72" width="92"></div> 
 
-  <div class="underScore">_ _ _ _ _ _ _ _</div>
-  <div class="rightGuess">Correct Guesses: </div>
-  <div class="wrongGuess"> Incorrectly Guessed: </div>
-  <div class="userWins">Wins: </div>
-  </div>
-  
+          <div id="intro"> <p>Press any letter to get started!</p> </div>
+          <br>
+          <h4 class="info">Guess The Word:</h4>
+          
+                
+          <div id="theWord"> </div>
+          <br>
+          <br>
+          <h4 id="wrongChoices">Incorrect Letters:  </h4>
+         
 
-</div>
-
-
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-
-<script src="assets/javascript/game.js"></script>
-
-</body>
-</html>
+          <img src="https://pic.funnygifsbox.com/uploads/2017/02/funnygifsbox.com_2017-02-12_10-05-33.gif" alt="This is my animated image" height="42" width="42">
+          <h4 id="wins">WINS:  </h4>
+                    
+                  
+          <img src="https://pic.funnygifsbox.com/uploads/2017/02/funnygifsbox.com_2017-02-12_10-05-12.gif" alt="This is my animated image" height="42" width="42">
+          <h4 id="losses">LOSSES: </h4>
+                   
+          <h3 id="remGuesses">Remaining Guesses Left: </h3>
+                    	
+            
+    <script type="text/javascript" src="javascript/game.js"></script>
+    </body>
+    </html>
