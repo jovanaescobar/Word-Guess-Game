@@ -14,4 +14,4 @@ Deployed site: https://jovanaescobar.github.io/Word-Guess-Game/
 
 - The number of Wins & Losses will be recorded per round in the stats section.
 
-*To begin, press any letter as your first choice!
+* To begin, press any letter as your first choice!
