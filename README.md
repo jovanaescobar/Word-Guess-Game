@@ -1,4 +1,5 @@
 Sponge Bob Square Pants Themed Word Guess Game
+
 Deployed site: https://jovanaescobar.github.io/Word-Guess-Game/
 
 Game Instructions:
